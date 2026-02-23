@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LeadMagnetProvider } from "@/components/lead-magnet/lead-magnet-provider";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
           <main>{children}</main>
           <SiteFooter />
         </LeadMagnetProvider>
+        <Analytics />
       </body>
     </html>
   );
