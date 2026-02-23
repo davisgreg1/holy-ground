@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Holy Ground Theology
 
-## Getting Started
+Next.js App Router project for a Catholic theology website with three delivered foundations:
 
-First, run the development server:
+1. Lead magnet funnel (popup + second-click trigger + conversion analytics + tokenized PDF delivery)
+2. Online Bible reader (book/chapter/verse navigation with static generation)
+3. Static-site search (build-time index + client ranking)
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS 4
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm dev         # build search index, then start dev server
+pnpm build:index # regenerate public/search-index.json
+pnpm build       # rebuild index and compile production bundle
+pnpm lint        # run eslint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Optional variables for production integration:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `NEXT_PUBLIC_SITE_URL` - canonical origin used in lead magnet download links
+- `LEAD_MAGNET_SECRET` - HMAC secret for signed download tokens
+- `LEAD_MAGNET_WEBHOOK_URL` - webhook endpoint for email delivery automation
 
-## Learn More
+## Architecture Overview
 
-To learn more about Next.js, take a look at the following resources:
+- `app/api/lead-magnet/signup/route.ts`
+  - Validates email signup
+  - Issues signed download URL
+  - Sends optional webhook payload for automated email delivery
+- `app/api/lead-magnet/download/route.ts`
+  - Verifies token and redirects to PDF asset
+- `app/bible/*`
+  - Static pages for Bible books and chapter routes from `kjv_strongs.json`
+- `scripts/build-search-index.mjs`
+  - Generates `public/search-index.json` from articles, Bible data, and resources
+- `components/search/search-experience.tsx`
+  - Client-side weighted ranking and filtering
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content Sources
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Articles: `content/articles.json`
+- Bible corpus: `kjv_strongs.json`
+- Lead magnet PDF placeholder: `public/ebooks/catholic-theology-starter-guide.pdf`
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Replace the placeholder PDF with the finalized design export.
+- Bible data is now loaded from `kjv_strongs.json` (66 books / full chapter set with Strong's tags stripped for display/search).
+- See `docs/HANDOFF.md` for milestone-level handoff and next implementation recommendations.

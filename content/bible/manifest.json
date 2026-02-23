@@ -1,0 +1,50 @@
+{
+  "translation": {
+    "id": "dr-sample",
+    "name": "Douay-Rheims (Sample)",
+    "shortName": "DR",
+    "license": "Public domain text excerpts"
+  },
+  "books": [
+    {
+      "slug": "genesis",
+      "name": "Genesis",
+      "abbreviation": "Gen",
+      "testament": "old",
+      "chapters": [1, 2],
+      "summary": "Creation and the first covenant narratives."
+    },
+    {
+      "slug": "psalms",
+      "name": "Psalms",
+      "abbreviation": "Ps",
+      "testament": "old",
+      "chapters": [23],
+      "summary": "Prayer and worship poetry of Israel and the Church."
+    },
+    {
+      "slug": "matthew",
+      "name": "Matthew",
+      "abbreviation": "Mt",
+      "testament": "new",
+      "chapters": [5],
+      "summary": "The Gospel according to Saint Matthew."
+    },
+    {
+      "slug": "john",
+      "name": "John",
+      "abbreviation": "Jn",
+      "testament": "new",
+      "chapters": [1, 2, 3],
+      "summary": "The Gospel according to Saint John."
+    },
+    {
+      "slug": "romans",
+      "name": "Romans",
+      "abbreviation": "Rom",
+      "testament": "new",
+      "chapters": [8],
+      "summary": "Saint Paul's letter on grace, faith, and life in Christ."
+    }
+  ]
+}
