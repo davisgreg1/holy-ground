@@ -49,10 +49,3 @@ Optional variables for production integration:
 
 - Articles: `content/articles.json`
 - Bible corpus: `kjv_strongs.json`
-- Lead magnet PDF placeholder: `public/ebooks/catholic-theology-starter-guide.pdf`
-
-## Notes
-
-- Replace the placeholder PDF with the finalized design export.
-- Bible data is now loaded from `kjv_strongs.json` (66 books / full chapter set with Strong's tags stripped for display/search).
-- See `docs/HANDOFF.md` for milestone-level handoff and next implementation recommendations.
